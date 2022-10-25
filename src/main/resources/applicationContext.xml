@@ -9,15 +9,38 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="musicBean"
+    <bean id="classicalMusicBean"
           class="ru.futsey.springcourse.ClassicalMusic">
     </bean>
+
+    <bean id="rockMusicBean"
+          class="ru.futsey.springcourse.RockMusic">
+    </bean>
+
+    <bean id="chillMusicBean"
+          class="ru.futsey.springcourse.ChillMusic">
+    </bean>
+
+<!--    <bean id="musicPlayer"-->
+<!--          class="ru.futsey.springcourse.MusicPlayer">-->
+<!--        <property name="music" ref="musicBean"/>-->
+<!--        <property name="name" value="Andrew"/>-->
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="60"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
+
     <bean id="musicPlayer"
           class="ru.futsey.springcourse.MusicPlayer">
-        <property name="music" ref="musicBean"/>
-<!--        <property name="name" value="Andrew"/>-->
+        <property name="music">
+            <list>
+                <ref bean="classicalMusicBean"/>
+                <ref bean="rockMusicBean"/>
+                <ref bean="chillMusicBean"/>
+            </list>
+        </property>
+
         <property name="name" value="${musicPlayer.name}"/>
-<!--        <property name="volume" value="60"/>-->
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
 

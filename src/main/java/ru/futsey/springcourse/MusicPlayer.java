@@ -1,22 +1,25 @@
 package ru.futsey.springcourse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MusicPlayer {
 
-    private Music music;
+    private List<Music> musicList = new ArrayList<Music>();
     private String name;
     private int volume;
 
     /**
      * IoC principle (Inversion of control)
      */
-    public MusicPlayer(Music music) {
-        this.music = music;
+    public MusicPlayer(List<Music> musicList) {
+        this.musicList = musicList;
     }
 
     public MusicPlayer() {}
 
-    public void setMusic(Music music) {
-        this.music = music;
+    public void setMusic(List<Music> musicList) {
+        this.musicList = musicList;
     }
 
     public String getName() {
@@ -36,6 +39,9 @@ public class MusicPlayer {
     }
 
     public void playMusic () {
-        System.out.println("Playing: ".concat(music.getSong()));
+        for (Music song : musicList) {
+            System.out.println("Playing: ".concat(song.getSong()));
+        }
+
     }
 }
