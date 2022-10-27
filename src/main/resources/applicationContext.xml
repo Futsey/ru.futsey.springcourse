@@ -31,7 +31,8 @@
 <!--    </bean>-->
 
     <bean id="musicPlayer"
-          class="ru.futsey.springcourse.MusicPlayer">
+          class="ru.futsey.springcourse.MusicPlayer"
+          scope="prototype">
         <property name="music">
             <list>
                 <ref bean="classicalMusicBean"/>

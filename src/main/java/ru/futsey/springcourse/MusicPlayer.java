@@ -2,6 +2,7 @@ package ru.futsey.springcourse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MusicPlayer {
 
@@ -43,5 +44,31 @@ public class MusicPlayer {
             System.out.println("Playing: ".concat(song.getSong()));
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MusicPlayer that = (MusicPlayer) o;
+        return volume == that.volume && Objects.equals(musicList, that.musicList) && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(musicList, name, volume);
+    }
+
+    @Override
+    public String toString() {
+        return "MusicPlayer{"
+                + "hashCode=" + hashCode()
+                + ", name='" + name + '\''
+                + ", volume=" + volume
+                + '}';
     }
 }
