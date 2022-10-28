@@ -14,9 +14,10 @@ public class TestSpring {
         ClassPathXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("applicationContext.xml");
 
+
         /**
-         * Singleton and prototype scope example
-         */
+         //         * Singleton and prototype scope example
+         //         */
         MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
         MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
         boolean compare = firstMusicPlayer == secondMusicPlayer;
@@ -37,6 +38,8 @@ public class TestSpring {
         System.out.println(secondMusicPlayer.getName());
         System.out.println(secondMusicPlayer.getVolume());
 
+        Music classicalMusic = context.getBean("classicalMusicBean", ClassicalMusic.class);
+        System.out.println(classicalMusic.getSong());
         context.close();
     }
 }
