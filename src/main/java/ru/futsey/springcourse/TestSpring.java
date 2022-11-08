@@ -14,32 +14,18 @@ public class TestSpring {
         ClassPathXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("applicationContext.xml");
 
+        Music music = context.getBean("myRockMusic", Music.class);
+        MusicPlayer mPlayer = new MusicPlayer(music);
+        mPlayer.playMusic();
 
-        /**
-         //         * Singleton and prototype scope example
-         //         */
-        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        boolean compare = firstMusicPlayer == secondMusicPlayer;
-        System.out.println("Is firstMusicPlayer refers on same bean secondMusicPlayer: ".concat(String.valueOf(compare)));
-        System.out.println("firstMusicPlayer: ".concat(String.valueOf(firstMusicPlayer)));
-        System.out.println("secondMusicPlayer: ".concat(String.valueOf(secondMusicPlayer)));
+        Music classmusic = context.getBean("myClassicalMusic", Music.class);
+        mPlayer = new MusicPlayer(classmusic);
+        mPlayer.playMusic();
 
-        System.out.println(firstMusicPlayer.getName());
-        System.out.println(firstMusicPlayer.getVolume());
-        System.out.println(secondMusicPlayer.getName());
-        System.out.println(secondMusicPlayer.getVolume());
+        Music chillmusic = context.getBean("chillMusic", Music.class);
+        mPlayer = new MusicPlayer(chillmusic);
+        mPlayer.playMusic();
 
-        firstMusicPlayer.setVolume(15);
-        firstMusicPlayer.setName("Andrew");
-
-        System.out.println(firstMusicPlayer.getName());
-        System.out.println(firstMusicPlayer.getVolume());
-        System.out.println(secondMusicPlayer.getName());
-        System.out.println(secondMusicPlayer.getVolume());
-
-        Music classicalMusic = context.getBean("classicalMusicBean", ClassicalMusic.class);
-        System.out.println(classicalMusic.getSong());
         context.close();
     }
 }

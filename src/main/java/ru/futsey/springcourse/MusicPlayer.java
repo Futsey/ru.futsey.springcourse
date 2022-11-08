@@ -7,6 +7,7 @@ import java.util.Objects;
 public class MusicPlayer {
 
     private List<Music> musicList = new ArrayList<Music>();
+    private Music music;
     private String name;
     private int volume;
 
@@ -15,6 +16,10 @@ public class MusicPlayer {
      */
     public MusicPlayer(List<Music> musicList) {
         this.musicList = musicList;
+    }
+
+    public MusicPlayer(Music music) {
+        this.music = music;
     }
 
     public MusicPlayer() {}
@@ -40,10 +45,7 @@ public class MusicPlayer {
     }
 
     public void playMusic () {
-        for (Music song : musicList) {
-            System.out.println("Playing: ".concat(song.getSong()));
-        }
-
+            System.out.println("Playing: ".concat(music.getSong()));
     }
 
     @Override

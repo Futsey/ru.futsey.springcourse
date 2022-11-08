@@ -1,5 +1,8 @@
 package ru.futsey.springcourse;
 
+import org.springframework.stereotype.Component;
+
+@Component("myClassicalMusic")
 public class ClassicalMusic implements Music {
 
     /**
