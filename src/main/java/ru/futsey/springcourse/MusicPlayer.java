@@ -1,6 +1,7 @@
 package ru.futsey.springcourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ import java.util.Objects;
 public class MusicPlayer {
 
     private List<Music> musicList = new ArrayList<Music>();
-    private RockMusic rockMusic;
-    private ClassicalMusic classicalMusic;
+    private Music rockMusic;
+    private Music classicalMusic;
     private String name;
     private int volume;
 
@@ -24,7 +25,7 @@ public class MusicPlayer {
     }
 
     @Autowired
-    public MusicPlayer(RockMusic rockMusic, ClassicalMusic classicalMusic) {
+    public MusicPlayer(@Qualifier("myRockMusic") Music rockMusic,@Qualifier("myClassicalMusic") Music classicalMusic) {
         this.rockMusic = rockMusic;
         this.classicalMusic = classicalMusic;
     }
