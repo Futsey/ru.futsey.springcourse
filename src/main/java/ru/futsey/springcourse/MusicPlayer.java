@@ -1,13 +1,18 @@
 package ru.futsey.springcourse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Component
 public class MusicPlayer {
 
     private List<Music> musicList = new ArrayList<Music>();
-    private Music music;
+    private RockMusic rockMusic;
+    private ClassicalMusic classicalMusic;
     private String name;
     private int volume;
 
@@ -18,8 +23,10 @@ public class MusicPlayer {
         this.musicList = musicList;
     }
 
-    public MusicPlayer(Music music) {
-        this.music = music;
+    @Autowired
+    public MusicPlayer(RockMusic rockMusic, ClassicalMusic classicalMusic) {
+        this.rockMusic = rockMusic;
+        this.classicalMusic = classicalMusic;
     }
 
     public MusicPlayer() {}
@@ -45,7 +52,8 @@ public class MusicPlayer {
     }
 
     public void playMusic () {
-            System.out.println("Playing: ".concat(music.getSong()));
+            System.out.println("Playing: ".concat(rockMusic.getSong())
+                    .concat(System.lineSeparator().concat(classicalMusic.getSong())));
     }
 
     @Override
