@@ -2,6 +2,7 @@ package ru.futsey.springcourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ public class MusicPlayer {
     private Music rockMusic;
     private Music classicalMusic;
     private Music chillMusic;
+    @Value("${musicPlayer.name}")
     private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
 
     /**
@@ -55,6 +58,8 @@ public class MusicPlayer {
     public void setVolume(int volume) {
         this.volume = volume;
     }
+
+
 
     public void playMusic () {
             System.out.println("Playing: ".concat(rockMusic.getSong())
