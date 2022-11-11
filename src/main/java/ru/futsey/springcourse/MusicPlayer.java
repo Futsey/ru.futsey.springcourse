@@ -11,9 +11,10 @@ import java.util.Objects;
 @Component
 public class MusicPlayer {
 
-    private List<Music> musicList = new ArrayList<Music>();
+    private List<Music> musicList = new ArrayList<>();
     private Music rockMusic;
     private Music classicalMusic;
+    private Music chillMusic;
     private String name;
     private int volume;
 
@@ -25,9 +26,12 @@ public class MusicPlayer {
     }
 
     @Autowired
-    public MusicPlayer(@Qualifier("myRockMusic") Music rockMusic,@Qualifier("myClassicalMusic") Music classicalMusic) {
+    public MusicPlayer(@Qualifier("myRockMusic") Music rockMusic,
+                       @Qualifier("myClassicalMusic") Music classicalMusic,
+                       @Qualifier("chillMusic") Music chillMusic) {
         this.rockMusic = rockMusic;
         this.classicalMusic = classicalMusic;
+        this.chillMusic = chillMusic;
     }
 
     public MusicPlayer() {}
@@ -55,6 +59,18 @@ public class MusicPlayer {
     public void playMusic () {
             System.out.println("Playing: ".concat(rockMusic.getSong())
                     .concat(System.lineSeparator().concat(classicalMusic.getSong())));
+    }
+
+    public void playMusic (MusicStyle musicStyle) {
+        if (musicStyle.equals(MusicStyle.ROCKMUSIC)) {
+            System.out.println("Playing: ".concat(rockMusic.getRandomSong()));
+        }
+        if (musicStyle.equals(MusicStyle.CLASSICALMUSIC)) {
+            System.out.println("Playing: ".concat(classicalMusic.getRandomSong()));
+        }
+        if (musicStyle.equals(MusicStyle.CHILLMUSIC)) {
+            System.out.println("Playing: ".concat(chillMusic.getRandomSong()));
+        }
     }
 
     @Override
