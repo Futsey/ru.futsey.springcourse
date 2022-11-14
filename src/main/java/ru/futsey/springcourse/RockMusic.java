@@ -1,10 +1,7 @@
 package ru.futsey.springcourse;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Random;
 
-@Component("myRockMusic")
 public class RockMusic implements Music {
 
     String[] songArray = {"Queen - We will rock you", "Кино - Лето", "DDT - Осень"};

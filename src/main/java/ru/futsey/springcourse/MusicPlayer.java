@@ -1,17 +1,23 @@
 package ru.futsey.springcourse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
-@Component
 public class MusicPlayer {
 
+    /**
+     * @param musicList В этом поле содержится перечень музыкальных жанров
+     * @param rockMusic Поле задействовано для проигрывания рокмузыки
+     * @param classicalMusic Поле задействовано для проигрывания классической музыки
+     * @param chillMusic Поле задействовано для проигрывания расслабляющей музыки
+     * @param name Поле для именования слушателя
+     * @param volume Поле для регулировки громкости
+     */
     private List<Music> musicList = new ArrayList<>();
     private Music rockMusic;
     private Music classicalMusic;
@@ -21,14 +27,10 @@ public class MusicPlayer {
     @Value("${musicPlayer.volume}")
     private int volume;
 
-    /**
-     * IoC principle (Inversion of control)
-     */
     public MusicPlayer(List<Music> musicList) {
         this.musicList = musicList;
     }
 
-    @Autowired
     public MusicPlayer(@Qualifier("myRockMusic") Music rockMusic,
                        @Qualifier("myClassicalMusic") Music classicalMusic,
                        @Qualifier("chillMusic") Music chillMusic) {
@@ -36,8 +38,6 @@ public class MusicPlayer {
         this.classicalMusic = classicalMusic;
         this.chillMusic = chillMusic;
     }
-
-    public MusicPlayer() {}
 
     public void setMusic(List<Music> musicList) {
         this.musicList = musicList;
@@ -59,13 +59,18 @@ public class MusicPlayer {
         this.volume = volume;
     }
 
-
-
-    public void playMusic () {
-            System.out.println("Playing: ".concat(rockMusic.getSong())
-                    .concat(System.lineSeparator().concat(classicalMusic.getSong())));
+    /**
+     * Метод выбирает случайный жанр и в нем случайную композицию для проигрывания
+     * @return проигрываемую композицию
+     */
+    public String playMusic () {
+        Random random = new Random();
+        return musicList.get(random.nextInt(musicList.size())).getRandomSong();
     }
 
+    /**
+     * Метод фильтрует заданный жанр и по итогу определяет случайную композицию в заданном жанре
+     */
     public void playMusic (MusicStyle musicStyle) {
         if (musicStyle.equals(MusicStyle.ROCKMUSIC)) {
             System.out.println("Playing: ".concat(rockMusic.getRandomSong()));
