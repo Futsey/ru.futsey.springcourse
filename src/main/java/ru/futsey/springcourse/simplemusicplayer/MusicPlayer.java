@@ -1,4 +1,4 @@
-package ru.futsey.springcourse;
+package ru.futsey.springcourse.simplemusicplayer;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package ru.futsey.springcourse;
+package ru.futsey.springcourse.simplemusicplayer;
 
 import java.util.Random;
 

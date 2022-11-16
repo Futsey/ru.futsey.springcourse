@@ -1,9 +1,9 @@
-package ru.futsey.springcourse;
+package ru.futsey.springcourse.simplemusicplayer;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.futsey.springcourse.simplemusicplayer.ClassicalMusic;
+import ru.futsey.springcourse.simplemusicplayer.MusicPlayer;
+import ru.futsey.springcourse.simplemusicplayer.SpringConfig;
 
 /**
  * SpringApp config with XML configuration file

@@ -1,4 +1,4 @@
-package ru.futsey.springcourse;
+package ru.futsey.springcourse.simplemusicplayer;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

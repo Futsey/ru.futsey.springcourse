@@ -1,4 +1,4 @@
-package ru.futsey.springcourse;
+package ru.futsey.springcourse.simplemusicplayer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
